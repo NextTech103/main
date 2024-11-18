@@ -1,0 +1,149 @@
+Error syncing models: ConnectionError [SequelizeConnectionError]: connect ETIMEDOUT
+    at ConnectionManager.connect (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:102:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async /home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/sequelize.js:305:26
+    at async MySQLQueryInterface.tableExists (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/dialects/abstract/query-interface.js:102:17)
+    at async Admin.sync (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/model.js:939:21)
+    at async Sequelize.sync (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/sequelize/lib/sequelize.js:377:9) {
+  parent: Error: connect ETIMEDOUT
+      at Connection._handleTimeoutError (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/mysql2/lib/connection.js:205:17)
+      at listOnTimeout (node:internal/timers:569:17)
+      at process.processTimers (node:internal/timers:512:7) {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  },
+  original: Error: connect ETIMEDOUT
+      at Connection._handleTimeoutError (/home/accesso3/nodevenv/mayeda.accessories-bazar.com/18/lib/node_modules/mysql2/lib/connection.js:205:17)
+      at listOnTimeout (node:internal/timers:569:17)
+      at process.processTimers (node:internal/timers:512:7) {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  }
+}
+Error syncing models: { SequelizeConnectionError: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+    at ConnectionManager.connect (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:102:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+  name: 'SequelizeConnectionError',
+  parent:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined },
+  original:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined } }
+Error syncing models: { SequelizeConnectionError: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+    at ConnectionManager.connect (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:102:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+  name: 'SequelizeConnectionError',
+  parent:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined },
+  original:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined } }
+Error syncing models: { SequelizeConnectionError: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+    at ConnectionManager.connect (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:102:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+  name: 'SequelizeConnectionError',
+  parent:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined },
+  original:
+   { Error: Access denied for user 'acceakoj_acceakoj'@'localhost' to database 'acceakoj_mayedamart'
+       at Packet.asError (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packets/packet.js:738:17)
+       at ClientHandshake.execute (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/commands/command.js:29:26)
+       at Connection.handlePacket (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:481:34)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:97:12)
+       at PacketParser.executeStart (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/home/acceakoj/nodevenv/mayeda.accessories-bazar.com/10/lib/node_modules/mysql2/lib/connection.js:104:25)
+       at Socket.emit (events.js:198:13)
+       at addChunk (_stream_readable.js:288:12)
+       at readableAddChunk (_stream_readable.js:269:11)
+       at Socket.Readable.push (_stream_readable.js:224:10)
+     code: 'ER_DBACCESS_DENIED_ERROR',
+     errno: 1044,
+     sqlState: '42000',
+     sqlMessage:
+      'Access denied for user \'acceakoj_acceakoj\'@\'localhost\' to database \'acceakoj_mayedamart\'',
+     sql: undefined } }
