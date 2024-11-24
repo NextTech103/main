@@ -12,18 +12,17 @@ import customFetch from '@/fetch-wrapper';
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
 
-
     useEffect(() => {
         customFetch(`${process.env.NEXT_PUBLIC_API_URL}admin/token`, {
-          method: "GET",
-          headers: {
-            "Authorization":localStorage.getItem("atoken"),  // Correctly set the Content-Type
-            "Admin-Key": localStorage.getItem("adminKey")
-          },
+            method: 'GET',
+            headers: {
+                Authorization: localStorage.getItem('atoken'), // Correctly set the Content-Type
+                'Admin-Key': localStorage.getItem('adminKey')
+            }
         })
-          .then((res) => res.json())
-          .catch((err) => console.log(err));
-      }, []);
+            .then((res) => res.json())
+            .catch((err) => console.log(err));
+    }, []);
 
     const model: AppMenuItem[] = [
         {
@@ -46,17 +45,25 @@ const AppMenu = () => {
             label: 'Reports',
             items: [
                 { label: 'Orders', icon: 'pi pi-fw pi-prime', to: '/orders' },
-                { label: 'Sales', icon: 'pi pi-fw pi-desktop', to:'/sales'  }
+                { label: 'Sales', icon: 'pi pi-fw pi-desktop', to: '/sales' }
             ]
         },
-        
+        {
+            label: 'Static Pages',
+            items: [
+                { label: 'Terms & Conditions', icon: 'pi pi-fw pi-code', to: '/pages/terms' },
+                { label: 'Privacy Policy', icon: 'pi pi-fw pi-code', to: '/pages/privacy' },
+                { label: 'Return Policy', icon: 'pi pi-fw pi-code', to: '/pages/return' }
+            ]
+        },
+
         {
             label: 'Settings',
             items: [
                 { label: 'Delivery Charges', icon: 'pi pi-fw pi-prime', to: '/delivery' },
                 { label: 'Cover Image', icon: 'pi pi-fw pi-prime', to: '/customization' }
             ]
-        },
+        }
     ];
 
     return (
