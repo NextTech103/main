@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'SoldProducts',  // Refers to the Order table
+        model: 'Products',  // Refers to the Order table
         key: 'id'
       },
     },

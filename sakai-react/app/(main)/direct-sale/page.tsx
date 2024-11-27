@@ -139,7 +139,7 @@ const POSPage = () => {
           "isDirectSale":true,
           "orderItem": cart
         }
-        customFetch(`${process.env.NEXT_PUBLIC_API_URL}orders`, {
+        customFetch(`${process.env.NEXT_PUBLIC_API_URL}orders/direct`, {
           method: "POST",
           headers: {
             "Content-Type":"Application/Json",

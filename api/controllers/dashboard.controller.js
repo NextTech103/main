@@ -2,34 +2,54 @@ const { Products, Orders, SoldProducts, Users, Ratings } = require('../models')
 const { Sequelize, where } = require('sequelize');
 class DashboardController {
     async getTopSoldProducts(req, res, next) {
-        const totalSalesData = await SoldProducts.findAll({
-            attributes:[[Sequelize.fn('SUM',Sequelize.col('soldQuantity')), 'totalQuantity']],where: { adminId : req.adminId}})
-        const totalSales = totalSalesData[0].get('totalQuantity') || 1;
-        const topProducts = await SoldProducts.findAll({
-            attributes: [
-                "productId",
-                [Sequelize.fn('SUM',Sequelize.col('soldQuantity')),"totalSold"],
-                [Sequelize.literal(`SUM(quantity) / ${totalSales}`),"soldPercentage"]
-            ],
-            group: ['productId'],
-            include: [{
-                model: Products,
-                as: 'product',
-                attributes: ['productname', 'sellingprice'], // Customize attributes you want from the Products table
-            }],
-            order: [[Sequelize.literal('soldPercentage'), 'DESC']], // Sort by highest percentage
-            limit: 10,
-        })
+        try {
+            // Get total sales quantity
+            const totalSalesData = await SoldProducts.findAll({
+                attributes: [
+                    [Sequelize.fn('SUM', Sequelize.col('soldQuantity')), 'totalQuantity']
+                ],
+                where: { adminId: req.adminId }
+            });
+            
+            // If no data found, default to 1 to avoid division by zero
+            const totalSales = totalSalesData[0]?.get('totalQuantity') || 1;
     
-        const result = topProducts.map(product => ({
-            productId: product.productId,
-            productName: product.Product.name,
-            totalSold: product.get('totalSold'),
-            soldPercentage: parseFloat(product.get('soldPercentage').toFixed(2)), // Formatting percentage to 2 decimal points
-        }));
-        res.status(200).json({ message: 'Top sold products got successfully', payload: result, success: true });
-        
+            // Get top sold products
+            const topProducts = await SoldProducts.findAll({
+                attributes: [
+                    'productId',
+                    [Sequelize.fn('SUM', Sequelize.col('soldQuantity')), 'totalSold'],
+                    [Sequelize.literal(`SUM(soldQuantity) / ${totalSales}`), 'soldPercentage']
+                ],
+                group: ['productId'],
+                include: [
+                    {
+                        model: Products,
+                        as: 'product', // Make sure to use the correct alias
+                        attributes: ['productname', 'sellingprice'], // Customize attributes you want from the Products table
+                    }
+                ],
+                order: [[Sequelize.literal('soldPercentage'), 'DESC']], // Sort by highest percentage
+                limit: 10,
+            });
+    
+            // Map the result to the desired output format
+            const result = topProducts.map(product => ({
+                productId: product.productId,
+                productName: product.product.productname,  // Corrected field reference
+                totalSold: product.get('totalSold'),
+                soldPercentage: product.get('soldPercentage')*100, // Formatting percentage to 2 decimal points
+            }));
+    
+            // Send the response
+            res.status(200).json({ message: 'Top sold products retrieved successfully', payload: result, success: true });
+    
+        } catch (error) {
+            console.error(error);
+            next(error);  // Call the next middleware to handle the error properly
+        }
     }
+    
 
 
     async getCardStat(req,res,next){
