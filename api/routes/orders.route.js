@@ -10,6 +10,7 @@ const UpdateProductQuantitiesMiddleware = require('../middleware/UpdateProductQu
 
 router
   .post('/',validateAdminKey,validateJWT,UpdateProductQuantitiesMiddleware.handle,AsyncHandler.handle(OrderController.insertOrder))
+  .post('/direct',validateAdminKey,validateJWT,UpdateProductQuantitiesMiddleware.handle,AsyncHandler.handle(OrderController.directSales))
   .get('/',validateAdminKey,validateJWT,QueryBuilder.build,AsyncHandler.handle(OrderController.getOrder))
   .put('/:id',validateAdminKey,validateJWT,UpdateProductQuantitiesMiddleware.handle,AsyncHandler.handle(OrderController.updateOrder))
 

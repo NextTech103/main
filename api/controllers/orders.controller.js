@@ -118,11 +118,11 @@ class OrderController{
           if (newQuantity < 0) {
             return next(new AppError('Insufficient product quantity for product ID: ' + product.id,200))
           }
-          await SoldProducts.create({quantity: item.quantity, productId: item.id, adminId : item.adminId}, { transaction: t })
+          await SoldProducts.create({soldQuantity: item.quantity, productId: item.id, adminId : item.adminId}, { transaction: t })
           // Update the product's quantity
           await Products.update({ quantity: newQuantity }, { where: { id: product.id } }, { transaction: t });
         }
-        SoldProducts.create({quantity: item.quantity, productId: item.id, adminId : item.adminId}, { transaction: t })
+        SoldProducts.create({soldQuantity: item.quantity, productId: item.id, adminId : item.adminId}, { transaction: t })
        }));
        await t.commit();
        res.status(201).json({ message: 'Order placed successfully', payload: { order : newOrder}, success: true });

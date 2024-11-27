@@ -1,8 +1,9 @@
 const { Orders, OrderItems, Products, SoldProducts } = require('../models'); // Adjust the import path as necessary
+const { sequelize } = require('../models');
 const AppError = require('../utils/app-error');
 class UpdateProductQuantitiesMiddleware {
   static async handle(req, res, next) {
-    const t = await sequelize.transaction();
+    const t = await sequelize.transaction(); 
     try {
       const { id } = req.params; // Expecting orderId and status in the request body
       const { status } = req.body;

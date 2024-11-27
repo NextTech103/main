@@ -20,11 +20,7 @@ class DashboardController {
             order: [[Sequelize.literal('soldPercentage'), 'DESC']], // Sort by highest percentage
             limit: 10,
         })
-
-        console.log(topProducts)
-        console.log(totalSales)
-        console.log(totalSalesData)
-        
+    
         const result = topProducts.map(product => ({
             productId: product.productId,
             productName: product.Product.name,
