@@ -6,7 +6,7 @@ import { Editor } from 'primereact/editor';
 import React, { useState } from 'react';
 
 const Privacy = () => {
-    const [des, setDes] = useState<any>('');
+    const [privacy, setPrivacy] = useState<any>('');
     const [displayConfirmation, setDisplayConfirmation] = useState(false);
 
     function submitHandle() {
@@ -34,7 +34,7 @@ const Privacy = () => {
         <>
             <div className="field col-12 md:col-12">
                 <h2>Privacy Policy</h2>
-                <Editor id="description" value={des} onTextChange={(e: any) => setDes(e.htmlValue)} style={{ height: '320px' }} placeholder="Write something here..." />
+                <Editor id="description" value={privacy} onTextChange={(e: any) => setPrivacy(e.htmlValue)} style={{ height: '320px' }} placeholder="Build Your Page..." />
             </div>
 
             <div className="field col-12 md:col-3"></div>
