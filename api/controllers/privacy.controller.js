@@ -7,7 +7,7 @@ class PrivacyController {
     async insertPrivacy(req, res,next) {
         const existingData = await Privacy.findOne({ where : { adminId : req.adminId}});
         if(existingData){
-            return next(new AppError('You already have added delivery charge',400))
+            return next(new AppError('You already have privacy',400))
         }
         req.body.adminId = req.user.id
         const newPrivacy = await Privacy.create(req.body);

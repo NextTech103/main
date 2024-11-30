@@ -13,6 +13,9 @@ const RatingsRoute = require('./routes/ratings.route')
 const CategoryRoute = require('./routes/category.route')
 const DashboardRoute = require('./routes/dashboard.route')
 const TermsRoute = require('./routes/terms.route');
+const PrivacyRoute = require('./routes/privacy.route');
+const ReturnsRoute = require('./routes/return.route');
+const SiteInfoRoute = require('./routes/site-info.route');
 app.use(cors())
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -28,6 +31,9 @@ app.use('/delivery-charge',DeliveryChargeRoute)
 app.use('/category',CategoryRoute)
 app.use('/dashboard',DashboardRoute)
 app.use('/terms',TermsRoute)
+app.use('/privacy',PrivacyRoute)
+app.use('/return',ReturnsRoute)
+app.use('/siteinfo',SiteInfoRoute)
 // Sync all models with the database
 sequelize.sync({ force: false })  // Use `force: false` or `alter: true` for production
   .then(() => {

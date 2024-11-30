@@ -61,7 +61,8 @@ const AppMenu = () => {
             label: 'Settings',
             items: [
                 { label: 'Delivery Charges', icon: 'pi pi-fw pi-prime', to: '/delivery' },
-                { label: 'Cover Image', icon: 'pi pi-fw pi-prime', to: '/customization' }
+                { label: 'Cover Image', icon: 'pi pi-fw pi-prime', to: '/customization' },
+                { label: 'Website Setting', icon: 'pi pi-fw pi-prime', to: '/pages/setting' }
             ]
         }
     ];
