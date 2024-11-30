@@ -12,6 +12,7 @@ const DeliveryChargeRoute = require('./routes/delivery-charge.route');
 const RatingsRoute = require('./routes/ratings.route')
 const CategoryRoute = require('./routes/category.route')
 const DashboardRoute = require('./routes/dashboard.route')
+const TermsRoute = require('./routes/terms.route');
 app.use(cors())
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -26,6 +27,7 @@ app.use('/ratings',RatingsRoute)
 app.use('/delivery-charge',DeliveryChargeRoute)
 app.use('/category',CategoryRoute)
 app.use('/dashboard',DashboardRoute)
+app.use('/terms',TermsRoute)
 // Sync all models with the database
 sequelize.sync({ force: false })  // Use `force: false` or `alter: true` for production
   .then(() => {
@@ -39,7 +41,7 @@ app.use((err, req, res, next) => {
     console.log(err)
     res.status(err.statusCode || 500).json({
       success: false,
-      message: 'Something went wrong',
+      message: err.message,
       // Optionally include error stack for development (but never expose in production!)
       // stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
     });
