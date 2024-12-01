@@ -8,7 +8,7 @@ import { Password } from 'primereact/password';
 import { LayoutContext } from '../../../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-import { useLoading } from '../../../../layout/context/LoadingContext';
+import { useLoading } from '@/layout/context/LoadingContext';
 import { Toast } from 'primereact/toast';
 
 

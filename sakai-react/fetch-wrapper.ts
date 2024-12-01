@@ -1,9 +1,9 @@
 // src/fetchWrapper.js
 const originalFetch = fetch;
 
-const customFetch = async (...args) => {
+const customFetch = async (input, init) => {
   try {
-    const response = await originalFetch(...args);
+    const response = await originalFetch(input, init);  // Pass arguments directly to fetch
 
     if (response.status === 401) {
         // Unauthorized, delete token and redirect to login

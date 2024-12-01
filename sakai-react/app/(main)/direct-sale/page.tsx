@@ -95,7 +95,7 @@ const POSPage = () => {
 
 
     function orderprod() {
-        if(selectedOption == 'Pickup'){
+        if(selectedOption === 'Pickup'){
            setDeliveryAddress('Pickup');
         }
         if(username.trim() === ''){
@@ -131,7 +131,7 @@ const POSPage = () => {
         showLoader();
         const data = {
           "quantity": totalQuantity,
-          "deliveryAddress": deliveryAddress,
+          "deliveryAddress": selectedOption === 'Pickup' ? 'Pickup' : deliveryAddress,
           "deliveryPhoneNumber": deliveryPhoneNumber,
           "deliverNote": deliverNote,
           "deliveryCharge":deliveryCharge,

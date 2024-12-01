@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+
+  sakai-react:
+    build:
+      context: ./sakai-react
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api

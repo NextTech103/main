@@ -6,6 +6,7 @@ const FileUploadUtil = require('../utils/file-upload');
 const validateJWT = require('../middleware/validateJWT');
 const validateAdminKey = require('../middleware/validateAdminKey')
 const QueryBuilder = require('../middleware/buildQueryMiddleware')
+const AppCacheMiddleware = require('../middleware/appCachemiddleware')
 
 const fileUploadUtil = new FileUploadUtil('uploads');
 const upload = fileUploadUtil.getUploader().fields([
@@ -16,7 +17,7 @@ const upload = fileUploadUtil.getUploader().fields([
 
 router
  .post('/',validateJWT,upload,AsyncHandler.handle(ProductController.insertProduct))
- .get('/',validateAdminKey,QueryBuilder.build,AsyncHandler.handle(ProductController.getProduct))
+ .get('/',AppCacheMiddleware,validateAdminKey,QueryBuilder.build,AsyncHandler.handle(ProductController.getProduct))
  .get('/:id',QueryBuilder.build,AsyncHandler.handle(ProductController.getSingeProduct))
  .put('/:id',validateJWT,QueryBuilder.build,AsyncHandler.handle(ProductController.updateProduct))
  .delete('/:id',validateJWT,AsyncHandler.handle(ProductController.deleteProduct))

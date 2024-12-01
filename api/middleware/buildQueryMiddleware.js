@@ -104,7 +104,7 @@ class QueryBuilder {
                 return next(new AppError(`Invalid query parameter format for key: ${key}`));
             }
           } else {
-            if (key !== 'searchBy'){
+            if (key !== 'searchBy' && key !== 'no-cache'){
                // Default behavior is an exact match
                whereClause[key] = value;
             }

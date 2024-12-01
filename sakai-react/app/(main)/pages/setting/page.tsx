@@ -14,11 +14,11 @@ const Return = () => {
     const [displayConfirmation, setDisplayConfirmation] = useState(false);
     const [siteInfoFound, setSiteInfoFound] = useState(false)
     const [siteInfoId, setSiteInfoId] = useState(0)
-
     const [siteTitle, setSiteTitle] = useState('')
     const [siteIcon, setSiteIcon] = useState('')
     const [siteIconPreview, setSiteIconPreview] = useState('')
     const { showLoader, hideLoader } = useLoading();
+    const [update,setUpdate] = useState(0)
 
     useEffect(() => {
         customFetch(`${process.env.NEXT_PUBLIC_API_URL}siteinfo`, {
@@ -33,12 +33,12 @@ const Return = () => {
             if(res.success && res.payload.SiteInfo.length > 0){
               setSiteInfoFound(true)
               setSiteInfoId(res.payload.SiteInfo[0].id)
-              setSiteTitle(res.payload.SiteInfo[0].description)
+              setSiteTitle(res.payload.SiteInfo[0].siteTitle)
               setSiteIconPreview(res.payload.SiteInfo[0].siteIcon)
             }
           })
           .catch((err) => console.log(err));
-    }, []);
+    }, [update]);
 
 
     function submitHandle(){
@@ -60,6 +60,7 @@ const Return = () => {
           .then((res) => {
             hideLoader()
             if(res.success){
+                setUpdate(update+1)
                 toast.current?.show({
                     severity: 'success',
                     summary: 'Success Message',
@@ -106,14 +107,14 @@ const Return = () => {
             </div>
             
 
-            <div className="flex align-items-center justify-content-center h-screen">
+            <div className="flex align-items-center justify-content-center">
                 <img 
-                    src={`${process.env.NEXT_PUBLIC_API_URL}siteinfo/${siteIconPreview}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${siteIconPreview}`}
                     alt="Circular Image" 
                     className="border-circle w-10rem h-10rem"
                 />
             </div>
-            <div className="p-fluid formgrid grid">
+            <div className="p-fluid formgrid grid mt-5">
                 <div className="field col-12 md:col-3">
                 <label>Site Title</label>
                 <InputText id="title" type="text" value={siteTitle} onChange={(e) => setSiteTitle(e.target.value)} />

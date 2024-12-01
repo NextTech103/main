@@ -13,6 +13,7 @@ import { Dropdown } from "primereact/dropdown";
 import Link from "next/link";
 import customFetch from "@/fetch-wrapper";
 import { useLoading } from '../../../../layout/context/LoadingContext';
+import { useSearchParams } from "next/navigation";
 
 const ProductsPage = () => {
     const toast = useRef<Toast>(null);
@@ -26,9 +27,13 @@ const ProductsPage = () => {
     const [update,setUpdate] = useState(0)
     const { showLoader, hideLoader } = useLoading();
 
+    const searchParams = useSearchParams();
+    // Access specific query parameters
+    const ref = searchParams.get('ref');
     useEffect(() => {
         showLoader()
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}products`, {
+        const url = `${process.env.NEXT_PUBLIC_API_URL}products${ref === 'updated' ? '?no-cache=true' : ''}`
+        fetch(url, {
             method: "GET",
             headers: {
             "Authorization":localStorage.getItem("atoken"),  // Correctly set the Content-Type
@@ -202,9 +207,9 @@ const ProductsPage = () => {
                         <Column field="sellingprice" header="Selling Price" body={(data) => `BDT ${data.sellingprice}`} sortable />
                         <Column field="buyingprice" header="Buying Price" body={(data) => `BDT ${data.buyingprice}`} sortable />
                         <Column field="category.name" header="Category" sortable />
-                        <Column field="totalRating" header="Reviews" sortable body={()=> (
+                        {/* <Column field="totalRating" header="Reviews" sortable body={()=> (
                             <Rating value="totalRating" readOnly cancel={false} />
-                        )} />
+                        )} /> */}
                         <Column field="quantity" header="Inventory" sortable />
                         <Column header="Action" frozen style={{ flexGrow: 1, flexBasis: '120px' }} className="font-bold" alignFrozen="right" body={(rowData)=> (
                             <div className="action-icons">

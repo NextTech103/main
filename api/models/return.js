@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Return.init({
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     adminId: {

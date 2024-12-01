@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Terms.init({
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     adminId: {

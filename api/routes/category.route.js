@@ -7,13 +7,15 @@ const validateAdminKey = require('../middleware/validateAdminKey');
 const FileUploadUtil = require('../utils/file-upload');
 const QueryBuilder = require('../middleware/buildQueryMiddleware')
 const fileUploadUtil = new FileUploadUtil('uploads');
+const AppCacheMiddleware = require('../middleware/appCachemiddleware')
+
 const upload = fileUploadUtil.getUploader().fields([
     { name: 'icon', maxCount: 1 },  // Uploads one image for 'pimage'
   ]);
 
 router
  .post('/',validateJWT,upload,AsyncHandler.handle(CategoryController.insertCategory))
- .get('/',validateAdminKey,QueryBuilder.build,AsyncHandler.handle(CategoryController.getCategory))
+ .get('/',AppCacheMiddleware,validateAdminKey,QueryBuilder.build,AsyncHandler.handle(CategoryController.getCategory))
  .get('/:id',QueryBuilder.build,AsyncHandler.handle(CategoryController.getSingleCategory))
  .delete('/:id',validateJWT,AsyncHandler.handle(CategoryController.deleteCategory))
  .put('/:id',validateJWT,upload,AsyncHandler.handle(CategoryController.updateCategory))

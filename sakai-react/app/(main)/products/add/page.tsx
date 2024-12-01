@@ -98,7 +98,7 @@ export default function AddProduct() {
                     detail: res.message,
                     life: 3000
                 });
-                router.push('/products/list')
+                router.push('/products/list?ref=updated')
             } else {
                 toast.current?.show({
                     severity: 'warn',

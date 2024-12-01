@@ -8,19 +8,20 @@ import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
 import Link from "next/link";
 import { useLoading } from '../../../../layout/context/LoadingContext';
-
+import { useSearchParams } from "next/navigation";
 
 const CategoryPage = () => {
     const [loading,setLoading] = useState(false)
     const [products,setProducts] = useState([])
     const [categoryList,setCategoryList] = useState([]);
-    const { showLoader, hideLoader } = useLoading();
-
-
+    const { showLoader, hideLoader } = useLoading(); 
+    const searchParams = useSearchParams();
+    const ref = searchParams.get('ref');
 
     useEffect(()=> {
         showLoader();
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}category`, {
+        const url = `${process.env.NEXT_PUBLIC_API_URL}category${ref === 'updated' ? '?no-cache=true' : ''}`
+        fetch(url, {
           method: "GET",
           headers: {
             "Authorization":localStorage.getItem("atoken"),  // Correctly set the Content-Type

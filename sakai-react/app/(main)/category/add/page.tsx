@@ -50,7 +50,7 @@ export default function AddCategory() {
                     detail: res.message,
                     life: 3000
                 });
-                router.push('/category/list')
+                router.push('/category/list?ref=updated')
             } else {
                 toast.current?.show({
                     severity: 'warn',

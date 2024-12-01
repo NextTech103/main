@@ -1,28 +1,59 @@
 /* eslint-disable @next/next/no-img-element */
-
+"use client"
 import Link from 'next/link';
 import { classNames } from 'primereact/utils';
-import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useContext, useImperativeHandle, useRef, useEffect, useState } from 'react';
 import { AppTopbarRef } from '@/types';
 import { LayoutContext } from './context/layoutcontext';
+import customFetch from '@/fetch-wrapper';
 
 const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const { layoutConfig, layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
     const menubuttonRef = useRef(null);
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
+    
 
+    const [siteIconPreview, setSiteIconPreview] = useState('')
+    const [siteTitle, setSiteTitle] = useState('')
     useImperativeHandle(ref, () => ({
         menubutton: menubuttonRef.current,
         topbarmenu: topbarmenuRef.current,
         topbarmenubutton: topbarmenubuttonRef.current
     }));
 
+    useEffect(()=> {
+        customFetch(`${process.env.NEXT_PUBLIC_API_URL}siteinfo`,{
+            method: 'GET',
+                headers: {
+                  Authorization: localStorage.getItem('atoken'), // Correctly set the Content-Type
+                  'Admin-Key': localStorage.getItem('adminKey')
+            }
+        })
+        .then(res=> res.json())
+        .then(res=> {
+            if(res.success && res.payload.SiteInfo.length > 0){
+                setSiteIconPreview(res.payload.SiteInfo[0].siteIcon)
+                setSiteTitle(res.payload.SiteInfo[0].siteTitle)
+            }
+        })
+        .catch((err) => console.log(err));
+    },[])
+    
+
     return (
         <div className="layout-topbar">
             <Link href="/" className="layout-topbar-logo">
-                <img src={`/layout/images/logo-${layoutConfig.colorScheme !== 'light' ? 'white' : 'dark'}.svg`} width="47.22px" height={'35px'} alt="logo" />
-                <span>SAKAI</span>
+                {siteIconPreview ?
+                <>
+                  <img src={`${process.env.NEXT_PUBLIC_API_URL+siteIconPreview}`} width="47.22px" height={'35px'} alt="logo" />
+                  <span>{siteTitle}</span>
+                </> : 
+                <>
+                  <img src={`/layout/images/logo.png`} width="47.22px" height={'35px'} alt="logo" />
+                  <span>NEXT SOLUTIONS</span>
+                </>}
+                
             </Link>
 
             <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
